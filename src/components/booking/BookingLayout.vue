@@ -1,14 +1,27 @@
 <template>
-  <div>
-    <h1>Booking Journey</h1>
-    <div>
-      <router-view />
-    </div>
+  <div class="bj">
+    <header class="header">
+      <Navigation />
+    </header>
+    <main class="bj-wrap">
+      <div class="bj-content">
+        <router-view />
+      </div>
+      <div class="bj-sidebar">
+        <Sidebar />
+      </div>
+    </main>
   </div>
 </template>
 
 <script>
-export default {
+import Navigation from './Nav.vue';
+import Sidebar from './Sidebar.vue';
 
+export default {
+  components: {
+    Navigation,
+    Sidebar,
+  },
 };
 </script>

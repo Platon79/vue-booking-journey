@@ -1,9 +1,19 @@
 <template>
-  <div>Rooms</div>
+  <div style="padding-top: 100px">
+    <Input v-model="val" type="text" placeholder="Test" />
+  </div>
 </template>
 
 <script>
-export default {
+import Input from '@/components/shared/Input.vue';
 
+export default {
+  components: {
+    Input,
+  },
+
+  data: () => ({
+    val: '',
+  }),
 };
 </script>

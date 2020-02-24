@@ -56,6 +56,9 @@ export default {
     withoutFlights: false,
     isWinter: true,
     isSailing: false,
+    accommodationName: 'Mar Menor Beachclub',
+    destinationResort: 'Los Urrutias',
+    destinationRegion: 'Spain',
   },
   passengers: [
     {

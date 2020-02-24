@@ -7,14 +7,14 @@
       <div class="bj-content">
         <router-view />
       </div>
-      <div class="bj-sidebar">
-        <Sidebar />
-      </div>
+      <Sidebar />
     </main>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import accomodationData from '@/data';
 import Navigation from './Nav.vue';
 import Sidebar from './Sidebar.vue';
 
@@ -22,6 +22,17 @@ export default {
   components: {
     Navigation,
     Sidebar,
+  },
+
+  created() {
+    const { holiday } = accomodationData;
+    this.updateHolidaysDetails(holiday);
+  },
+
+  methods: {
+    ...mapActions('bookingJourney', [
+      'updateHolidaysDetails',
+    ]),
   },
 };
 </script>

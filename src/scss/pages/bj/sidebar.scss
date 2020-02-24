@@ -1,0 +1,338 @@
+.bj-sidebar {
+  float: right;
+  width: 335px;
+  color: #fff;
+}
+
+.bj-sidebar__top {
+  padding: 25px 15px;
+  border-radius: 5px 5px 0 0;
+  background: $green;
+  line-height: 1;
+}
+.bj-sidebar__price-label {
+  font-size: 20px;
+}
+.bj-sidebar__price-value {
+  font-size: 60px;
+  font-weight: bold;
+}
+.bj-sidebar__price-pp {
+  font-size: 14px;
+}
+
+.bj-sidebar__bottom {
+  margin-bottom: 10px;
+  padding: 20px 15px;
+  border-radius: 0 0 5px 5px;
+  background: $darkBlue;
+}
+
+.bj-sidebar__submit {
+  button {
+    position: relative;
+    width: 100%;
+    min-height: 55px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    
+    &.is-loading {
+      pointer-events: none;
+    }
+    &._disabled {
+      opacity: .7;
+      pointer-events: none;
+    }
+  }
+}
+
+.bj-sidebar__place {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bj-sidebar__city {
+  font-size: 14px;
+}
+
+.bj-sidebar__collapse {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(243,243,243,0.30);
+}
+
+.bj-sidebar__collapse-title {
+  position: relative;
+  padding-left: 30px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+
+  // &._room {
+  //   background-size: 17px;
+  //   background-image: url('#{$image-path}icons/room-options.svg');
+  // }
+  // &._flights {
+  //   background-image: url('#{$image-path}icons/flight-options.svg');
+  // }
+  // &._guest {
+  //   background-image: url('#{$image-path}icons/guest-details.svg');
+  // }
+  // &._extras {
+  //   background-size: 19px;
+  //   background-image: url('#{$image-path}svg/beachclub.svg');
+
+  //   &._winter {
+  //     background-image: url('#{$image-path}svg/ski-white.svg');
+  //   }
+  //   &._sailing {
+  //     background-image: url('#{$image-path}svg/sailing.svg');
+  //   }
+  // }
+  
+  .caret:before {
+    left: 0;
+  }
+
+  &.opened {
+    .caret:before {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.bj-sidebar__collapse-content {
+  display: none;
+  padding-top: 15px;
+  font-size: 14px;
+}
+
+.bj-sidebar__item {
+  margin-bottom: 12px;
+  line-height: 1;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.bj-sidebar__label {
+  margin-bottom: 4px;
+  opacity: .7;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.bj-sidebar__room-value {
+  font-size: 14px;
+  font-weight: bold;
+
+  span {
+    display: inline-block;
+    margin-left: 5px;
+    opacity: .7;
+  }
+}
+
+.bj-sidebar__flight-row1 {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+
+  span {
+    opacity: .7;
+  }
+}
+.bj-sidebar__flight-row2 {
+  font-size: 14px;
+
+  span:first-child {
+    display: inline-block;
+
+    &:after {
+      content: 'a';
+      display: inline-block;
+      margin: 0 10px;
+      font-family: Neilsonicons;
+      font-size: 12px;
+    }
+  }
+}
+
+.bj-sidebar__guest-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bj-sidebar__extras-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+.bj-sidebar__extras-value {
+  margin-bottom: 4px;
+  opacity: .7;
+  font-size: 14px;
+}
+
+.bj-sidebar__m-trigger {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 22px;
+  height: 22px;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    top: 10px;
+    left: 0;
+    background: #A4ACB1;
+  }
+
+  &:after {
+    transform: rotate(90deg);
+  }
+}
+
+@media(max-width: $max-width) {
+  .bj-sidebar {
+    &.affixed-top {
+      position: fixed;
+      top: 129px;
+      right: calc((100% - 940px) / 2);
+    }
+    &.affixed-bottom {
+      position: fixed;
+      bottom: 20px;
+      right: calc((100% - 940px) / 2);
+    }
+  }
+}
+
+@media(max-width: $desktop-width) {
+  .bj-sidebar {
+    width: 235px;
+  }
+}
+
+@media(max-width: $mobile-width) {
+  .bj-sidebar__m-trigger {
+    display: block;
+    transition: all .3s ease-in-out;
+  }
+
+  .bj-sidebar {
+    position: fixed !important;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 50;
+    background: #364b60;
+    transform: translate(0, 0) !important;
+    transition: all .3s ease-in-out;
+
+    &._m-opened {
+      height: 100%;
+    }
+
+    &.affixed-top,
+    &.affixed-bottom {
+      top: auto;
+      right: auto;
+    }
+  }
+
+  .bj-sidebar-inner {
+    position: static !important;
+    height: 100%;
+    padding-bottom: 50px;
+    transform: translate(0, 0) !important;
+  }
+
+  .bj-sidebar__submit {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .bj-sidebar__top {
+    padding: 15px;
+    border-radius: 0;
+    background: #fff;
+    color: #2E3438;
+    box-shadow: 0 0 7px 1px rgba(147,156,164,0.20);
+    transition: all .3s ease-in-out;
+  }
+  .bj-sidebar__price-label {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 16px;
+  }
+  .bj-sidebar__price-value {
+    display: inline-block;
+    font-size: 22px;
+  }
+  .bj-sidebar__price-pp {
+    display: none;
+  }
+  .bj-sidebar__bottom {
+    height: 0;
+    padding: 0;
+    margin-bottom: 0;
+    overflow: auto;
+    transition: all .3s ease-in-out;
+  }
+
+  .bj-sidebar__submit {
+    button {
+      min-height: 50px;
+      border-radius: 0;
+      font-size: 16px;
+    }
+  }
+
+  .bj-sidebar._m-opened {
+    .bj-sidebar__top {
+      height: 100px;
+      background: #38919D;
+      color: #fff;
+    }
+    .bj-sidebar__bottom {
+      height: calc(100% - 100px);
+      padding: 20px 15px;
+    }
+    .bj-sidebar__price-label {
+      display: block;
+      font-size: 14px;
+    }
+    .bj-sidebar__price-value {
+      display: block;
+      margin: 4px 0;
+      font-size: 34px;
+    }
+    .bj-sidebar__price-pp {
+      display: block;
+    }
+
+    .bj-sidebar__m-trigger {
+      transform: rotate(45deg);
+
+      &:before,
+      &:after {
+        background: #fff;
+      }
+    }
+  }
+}

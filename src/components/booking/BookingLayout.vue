@@ -25,14 +25,18 @@ export default {
   },
 
   created() {
-    const { holiday } = accomodationData;
+    const { holiday, rooms } = accomodationData;
     this.updateHolidaysDetails(holiday);
+    this.setAllRoomsData(rooms);
   },
 
   methods: {
     ...mapActions('bookingJourney', [
       'updateHolidaysDetails',
     ]),
+    ...mapActions('bookingJourney/rooms', {
+      setAllRoomsData: 'setAllData',
+    }),
   },
 };
 </script>

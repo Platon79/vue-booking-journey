@@ -1,5 +1,5 @@
 import moment from 'moment';
-import room from './rooms';
+import rooms from './rooms';
 import flights from './flights';
 import guestDetails from './guestDetails';
 import extras from './extras';
@@ -24,7 +24,7 @@ export default {
   namespaced: true,
 
   modules: {
-    room,
+    rooms,
     flights,
     guestDetails,
     extras,

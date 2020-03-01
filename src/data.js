@@ -1,5 +1,89 @@
+export const floorplans = [
+  'https://wcs.smartdraw.com/floor-plan/img/floor-plan.png?bn=1510011154',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRmfeuPKNFAaagiLpgls9vJgtbFaFwlJameiboJA-APy4QC6u7W',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQl0lHpRTp66MZa48DT-mLqZI9kEmDv8_aTW1Wq2xjqVsjP6tVm',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTliTXR4SorDliv3jSCweEe7Qre5WJ3g39qkhv5rp-6OA2X5oae',
+];
+
 export default {
-  rooms: {},
+  rooms: {
+    roomsData: {
+      RED: {
+        id: 'RED',
+        price: 900,
+        name: 'Red room',
+        maxAdults: 2,
+        maxChild: 1,
+        images: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSDtceovd4FcLQPO6Qv2_bsc9amY-GeuIN7O0PPxv5eYJwHQspp',
+          'https://www.hotel-negresco-nice.com/sites/default/files/styles/750x390/public/2019-07/imperiale%202-1116x583_0.jpg?h=9466075d&itok=5G4yaO-d',
+        ],
+        floorplan: 'https://wcs.smartdraw.com/floor-plan/img/floor-plan.png?bn=1510011154',
+        facilities: [
+          'Double bed', 'Balcon', 'Shower', 'Terrace', 'Air conditioning', 'Approx room size: 28 square metres',
+        ],
+      },
+      GREEN: {
+        id: 'GREEN',
+        price: 1000,
+        name: 'Green room',
+        maxAdults: 2,
+        maxChild: 1,
+        images: [
+          'https://img.themirahotel.com/wp-content/uploads/2015/05/CourtyardRooms_TheMiraHongKong_Luxury5StarHotel_TsimShaTsui_HongKong-1024x511.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJpwRPO2ujAiOfn9Qs7HEP-DQNwyIxIdoae5ZJwgF0ZpbO8Ybu',
+        ],
+        floorplan: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRmfeuPKNFAaagiLpgls9vJgtbFaFwlJameiboJA-APy4QC6u7W',
+        facilities: [
+          'Double bed', 'Balcon', 'Shower', 'Terrace', 'Air conditioning', 'Approx room size: 28 square metres',
+        ],
+      },
+      BLUE: {
+        id: 'BLUE',
+        price: 1200,
+        name: 'Blue room',
+        maxAdults: 2,
+        maxChild: 1,
+        images: [
+          'https://pix10.agoda.net/hotelImages/3036216/-1/a629aa7817be9e0e6cbdf773f1502713.jpg?s=1024x768',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQiyEGH29RVNulGslkwtJnYBJEiSr3-Dfrs_iv6qFRpLLmr_PQ2',
+        ],
+        floorplan: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQl0lHpRTp66MZa48DT-mLqZI9kEmDv8_aTW1Wq2xjqVsjP6tVm',
+        facilities: [
+          'Double bed', 'Balcon', 'Shower', 'Terrace', 'Air conditioning', 'Approx room size: 28 square metres',
+        ],
+      },
+      YELLOW: {
+        id: 'YELLOW',
+        price: 1500,
+        name: 'Yellow room',
+        maxAdults: 2,
+        maxChild: 1,
+        images: [
+          'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/10/21/102157_v11.jpeg',
+          'https://r-cf.bstatic.com/images/hotel/max1024x768/158/158870852.jpg',
+        ],
+        floorplan: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTliTXR4SorDliv3jSCweEe7Qre5WJ3g39qkhv5rp-6OA2X5oae',
+        facilities: [
+          'Double bed', 'Balcon', 'Shower', 'Terrace', 'Air conditioning', 'Approx room size: 28 square metres',
+        ],
+      },
+    },
+    initialRooms: [
+      {
+        id: 'RED',
+        passengersString: '2 adults',
+      },
+      {
+        id: 'GREEN',
+        passengersString: '2 adults and 1 child',
+      },
+    ],
+    upgradeRooms: [
+      ['RED', 'BLUE', 'YELLOW', 'GREEN'],
+      ['RED', 'BLUE', 'YELLOW', 'GREEN'],
+    ],
+  },
   availableFlights: [
     {
       accomCode: 'FAG038',

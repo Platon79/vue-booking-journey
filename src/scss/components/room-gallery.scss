@@ -1,0 +1,78 @@
+.room-gallery {
+  height: 195px;
+  position: relative;
+  overflow: hidden;
+
+  .slider {
+    .slider-item__image {
+      height: 195px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50%;
+    }
+
+    .slider-indicators {
+      z-index: 1;
+    }
+
+    .slider-item {
+      z-index: 1 !important;
+    }
+
+    .slider-btn {
+      z-index: 2;
+
+      .slider-icon {
+        width: 12px;
+        height: 12px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -9px;
+          background: rgba(1, 35, 52, 0.25);
+          bottom: 0px;
+          left: -14px;
+          width: 20px;
+          height: 20px;
+          border-radius: 20px;
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  .gallery__floorplan {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    color: white;
+    margin: 9px 15px;
+    padding: 3px 10px;
+    background-color: #38919dd9;
+    border-radius: 2px;
+    font-size: 12px;
+    z-index: 3;
+  }
+
+  .gallery__floorplan--disabled {
+    background-color: #939ca4d9;
+  }
+
+  .more-info {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    color: white;
+    margin: 9px 15px;
+    padding: 3px 10px;
+    background-color: #38919dd9;
+    border-radius: 2px;
+    font-size: 12px;
+    z-index: 3;
+  }
+
+  img {
+    max-width: unset;
+  }
+}

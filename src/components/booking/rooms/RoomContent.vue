@@ -1,7 +1,7 @@
 <template>
   <div class="bj-room__item-block">
     <div class="bj-room__item-gallery">
-      <img :src="images[0]" alt="">
+      <RoomOptionGallery :images="images" :floorplan="floorplan" :show-less-btn="false"/>
     </div>
     <div class="bj-room__item-info">
       <div class="bj-room__item-name">{{ name }}</div>
@@ -19,7 +19,13 @@
 </template>
 
 <script>
+import RoomOptionGallery from '@/components/shared/RoomGallery.vue';
+
 export default {
+  components: {
+    RoomOptionGallery,
+  },
+
   props: {
     images: {
       type: Array,

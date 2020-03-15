@@ -14,7 +14,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import accomodationData from '@/data';
+import accomodationData from '@/data.js';
 import Navigation from './Nav.vue';
 import Sidebar from './Sidebar.vue';
 
@@ -25,9 +25,10 @@ export default {
   },
 
   created() {
-    const { holiday, rooms } = accomodationData;
+    const { holiday, rooms, availableFlights } = accomodationData;
     this.updateHolidaysDetails(holiday);
     this.setAllRoomsData(rooms);
+    this.updateAllFlights(availableFlights);
   },
 
   methods: {
@@ -36,6 +37,9 @@ export default {
     ]),
     ...mapActions('bookingJourney/rooms', {
       setAllRoomsData: 'setAllData',
+    }),
+    ...mapActions('bookingJourney/flights', {
+      updateAllFlights: 'updateAllFlights',
     }),
   },
 };

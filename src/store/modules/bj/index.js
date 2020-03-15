@@ -38,7 +38,7 @@ export default {
       {
         completed: true,
         label: 'Rooms',
-        link: '/booking/room-options',
+        link: '/booking/rooms',
         submitUrl: '/api/booking/room-options',
         availableToGo: true,
         stepName: 'FUNNEL_ROOM_OPTIONS',
@@ -46,7 +46,7 @@ export default {
       {
         completed: false,
         label: 'Flights',
-        link: '/booking/flight-options',
+        link: '/booking/flights',
         submitUrl: '/api/booking/flight-options',
         availableToGo: true,
         stepName: 'FUNNEL_FLIGHT_OPTIONS',

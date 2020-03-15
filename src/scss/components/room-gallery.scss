@@ -48,11 +48,17 @@
     position: absolute;
     color: white;
     margin: 9px 15px;
-    padding: 3px 10px;
-    background-color: #38919dd9;
+    padding: 5px 10px;
+    background-color: $green;
     border-radius: 2px;
     font-size: 12px;
     z-index: 3;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .gallery__floorplan--disabled {
@@ -66,7 +72,7 @@
     color: white;
     margin: 9px 15px;
     padding: 3px 10px;
-    background-color: #38919dd9;
+    background-color: $green;
     border-radius: 2px;
     font-size: 12px;
     z-index: 3;

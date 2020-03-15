@@ -6,7 +6,7 @@
         {{ boundInfo.flightNo }}
       </div>
       <div class="flight-card__company">
-        <img :src="boundInfo.logoUrl" alt="">
+        {{ boundInfo.carrierName }}
       </div>
     </div>
     <div class="flight-card__cell-body">

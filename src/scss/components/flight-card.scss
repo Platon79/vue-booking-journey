@@ -1,0 +1,238 @@
+$border: 1px solid #F3F3F3;
+
+.flight-card-wrap {
+  margin-bottom: 20px;
+  padding: 3px 15px 15px;
+  border: $border;
+  background: #FFFFFF;
+  box-shadow: 0 1px 7px 0 rgba(147,156,164,0.30);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &._luggageIsSame {
+    .flight-card__footer {
+      justify-content: space-between;
+    }
+  }
+  &._withoutFooter {
+    padding-bottom: 0;
+  } 
+}
+
+.flight-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: $border;
+  line-height: 14px;
+  font-size: 14px;
+  color: #104152;
+}
+.flight-card__luggage {
+  line-height: 42px;
+
+  .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-bottom: -2px;
+    margin-right: 5px;
+    background: url('../assets/icons/luggage.svg') center no-repeat;
+    background-size: 11px;
+  }
+}
+.flight-card__footer-price {
+  span {
+    line-height: 42px;
+    vertical-align: top;
+  }
+
+  strong {
+    margin: 0 20px 0 10px;
+    line-height: 42px;
+    font-size: 28px;
+  }
+
+  .btn {
+    padding-top: 11px;
+    padding-bottom: 7px;
+    border-radius: 4px;
+    box-shadow: 0 1px 7px 0 rgba(147,156,164,.3);
+    font-size: 18px;
+
+    &.is-loading {
+      background: #f9a54b;
+      pointer-events: none;
+
+      .loader .line {
+        height: 13px;
+      }
+    }
+
+    &.icon-tick-circled {
+      background: #f9a54b;
+      pointer-events: none;
+
+      &:before {
+        margin-bottom: 4px;
+        margin-right: 4px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.flight-card__row {
+  display: flex;
+}
+
+.flight-card__cell {
+  min-width: 50%;
+  width: 50%;
+
+  &:first-child {
+    border-right: $border;
+
+    .flight-card__cell-head,
+    .flight-card__cell-body {
+      padding-right: 15px;
+    }
+  }
+
+  &:last-child {
+
+    .flight-card__cell-head,
+    .flight-card__cell-body {
+      padding-left: 25px;
+    }
+  }
+}
+
+.flight-card__cell-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: $border;
+}
+
+.flight-card__number {
+  font-size: 14px;
+  color: #14313E;
+  line-height: 14px;
+
+  .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-bottom: -2px;
+    margin-right: 5px;
+    background: url('../assets/icons/plane.svg') center no-repeat;
+    background-size: 16px;
+  }
+}
+
+.flight-card__company {
+  img {
+    display: inline-block;
+    height: 27px;
+  }
+}
+
+.flight-card__cell-body {
+  padding: 10px 0;
+}
+
+.flight-card__cell-date {
+  margin-bottom: 10px;
+
+  .icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-bottom: -6px;
+    margin-right: 8px;
+    background: url('../assets/icons/plane-outbound.svg') center no-repeat;
+    background-size: 25px;
+  }
+}
+.flight-card__cell._inbound .flight-card__cell-date .icon {
+  background-image: url('../assets/icons/plane-inbound.svg');
+}
+
+.flight-card__route {
+  position: relative;
+  display: inline-flex;
+}
+
+.flight-card__route-cell {
+
+  time {
+    line-height: 19px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2E3438;
+  }
+}
+.flight-card__route-cell-arrow {
+  width: 50px;
+  background: url('../assets/icons/arrow.png') center no-repeat;
+  background-size: 16px;
+}
+
+.flight-card__route-way {
+  margin-bottom: 2px;
+  line-height: 16px;
+  font-size: 12px;
+  color: #A4ACB1;
+}
+
+.flight-card__route-place {
+  margin-bottom: 3px;
+  line-height: 19px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2E3438;
+}
+
+@media(max-width: $max-width) {
+  
+}
+
+@media(max-width: $desktop-width) {
+  .flight-card__row {
+    display: block;
+  }
+  
+  .flight-card__cell {
+    width: 100%;
+  
+    &:first-child {
+      border-right: none;
+  
+      .flight-card__cell-head,
+      .flight-card__cell-body {
+        padding-right: 0;
+      }
+    }
+  
+    &:last-child {
+      border-top: $border;
+
+      .flight-card__cell-head,
+      .flight-card__cell-body {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .flight-card__cell-date {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: $mobile-width) {
+  
+}

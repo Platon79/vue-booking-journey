@@ -39,8 +39,9 @@
         class="btn btn--default"
         @click="handleSubmitClick"
       >
-        <OverlayScaleLoader v-if="submitLoader" class="loader" white />
-        <template v-else>Continue to {{ nextStepName }}</template>
+        <!-- <OverlayScaleLoader v-if="submitLoader" class="loader" white />
+        <template v-else>Continue to {{ nextStepName }}</template> -->
+        Continue to {{ nextStepName }}
       </button>
     </div>
   </div>
@@ -53,6 +54,7 @@ export default {
   computed: {
     ...mapState('bookingJourney', [
       'holidaysDetails',
+      'currentStep',
     ]),
     ...mapGetters('bookingJourney', [
       'getFormatedDurationString',
@@ -66,7 +68,15 @@ export default {
 
   methods: {
     mobileOpenSidebar() {},
-    handleSubmitClick() {},
+    handleSubmitClick() {
+      switch (this.currentStep) {
+        case 'FUNNEL_ROOM_OPTIONS':
+          this.$router.push('/booking/flights');
+          break;
+        default:
+          break;
+      }
+    },
   },
 };
 </script>

@@ -1,0 +1,32 @@
+.bj-flight__extras-wrap {
+  p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #364B60;
+    line-height: 26px;
+  }
+}
+
+.bj-flight__extras-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bj-flight__extras-item {
+  width: calc(50% - 5px);
+  margin-bottom: 10px;
+}
+
+@media(max-width: $desktop-width) {
+  .bj-flight__extras-item {
+    width: 100%;
+  }
+  .bj-flight__extras-wrap {
+    p {
+      margin-bottom: 15px;
+      font-size: 12px;
+      line-height: 19px;
+    }
+  }
+}

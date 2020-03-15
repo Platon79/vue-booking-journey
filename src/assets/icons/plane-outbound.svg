@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Group 5 Copy 15</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="flight-options-default" transform="translate(-20.000000, -255.000000)">
+            <g id="Group-27" transform="translate(20.000000, 220.000000)">
+                <g id="Group-5-Copy-15" transform="translate(0.000000, 35.000000)">
+                    <circle id="Oval" fill="#F3F3F3" cx="12.5" cy="12.5" r="12.5"></circle>
+                    <g id="departure" transform="translate(5.000000, 7.000000)" fill="#38919D" fill-rule="nonzero">
+                        <path d="M6.35781461,0.0112772329 L9.49521159,2.02368569 L12.1302576,0.46737254 C12.4812213,0.260063993 12.8933655,0.200734745 13.2906867,0.300414482 C13.688036,0.400066713 14.0198086,0.645937896 14.2249367,0.992671549 C14.4300929,1.33943271 14.4823401,1.74282758 14.3720968,2.12850894 C14.2618253,2.51419031 14.0031819,2.83286841 13.6437358,3.02592913 L13.6437358,3.02592913 L4.89649907,7.72350175 L3.01173878,7.63994021 L0.388979624,5.89348191 L2.47323181,4.71897186 L3.88055294,5.33985229 L6.18906796,3.97637982 L3.7530348,1.46020912 L6.35781461,0.0112772329 Z" id="Shape"></path>
+                        <rect id="Rectangle" x="0" y="10.3858089" width="12.8225754" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

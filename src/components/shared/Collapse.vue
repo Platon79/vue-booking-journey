@@ -19,9 +19,7 @@
 </template>
 
 <script>
-import { moneyConventer } from '@/utils';
-
-const $ = window.jQuery;
+import utils from '@/utils/index';
 
 export default {
   props: {
@@ -41,26 +39,13 @@ export default {
 
   computed: {
     formattedPrice() {
-      return moneyConventer(+this.price);
+      return utils.moneyConventer(+this.price);
     },
-  },
-
-  mounted() {
-    if (this.$el.classList.contains('opened')) {
-      $(this.$refs.body).css({ display: 'block' });
-    } else {
-      $(this.$refs.body).css({ display: 'none' });
-    }
   },
 
   methods: {
     toggleBody() {
       if (this.disabled) return;
-      if (this.$el.classList.contains('opened')) {
-        $(this.$refs.body).slideUp();
-      } else {
-        $(this.$refs.body).slideDown();
-      }
       this.$el.classList.toggle('opened');
     },
   },

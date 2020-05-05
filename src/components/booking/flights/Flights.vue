@@ -37,7 +37,7 @@ export default {
   },
 
   computed: {
-    ...mapState('bookingJourney/flightOptions', [
+    ...mapState('bookingJourney/flights', [
       'flightIsUpdating',
     ]),
     ...mapGetters('bookingJourney/flights', [
@@ -46,5 +46,8 @@ export default {
     ]),
   },
 
+  methods: {
+    selectNewFlight() {},
+  },
 };
 </script>

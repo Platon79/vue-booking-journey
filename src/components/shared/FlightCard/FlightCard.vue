@@ -82,7 +82,7 @@ export default {
     },
     loader: {
       default: null,
-      validator: prop => typeof prop === 'string' || prop === null,
+      validator: (prop) => typeof prop === 'string' || prop === null,
     },
   },
 
@@ -100,6 +100,7 @@ export default {
 
   methods: {
     handleSelectClick() {
+      debugger
       if (this.selected) return;
       this.$emit('flightSelectClick', this.code);
     },

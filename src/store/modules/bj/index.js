@@ -4,6 +4,10 @@ import flights from './flights';
 import guestDetails from './guestDetails';
 import extras from './extras';
 import payment from './payment';
+import router from '../../../router';
+
+window.test = router
+console.log(router)
 
 const months = {
   0: 'January',
@@ -32,14 +36,11 @@ export default {
   },
 
   state: {
-    currentStep: 'FUNNEL_ROOM_OPTIONS',
-    nextStep: 'FUNNEL_FLIGHT_OPTIONS',
     navigation: [
       {
         completed: true,
         label: 'Rooms',
         link: '/booking/rooms',
-        submitUrl: '/api/booking/room-options',
         availableToGo: true,
         stepName: 'FUNNEL_ROOM_OPTIONS',
       },
@@ -47,7 +48,6 @@ export default {
         completed: false,
         label: 'Flights',
         link: '/booking/flights',
-        submitUrl: '/api/booking/flight-options',
         availableToGo: true,
         stepName: 'FUNNEL_FLIGHT_OPTIONS',
       },
@@ -55,7 +55,6 @@ export default {
         completed: false,
         label: 'Guest details',
         link: '/booking/guest-details',
-        submitUrl: '/api/booking/guest-details',
         availableToGo: true,
         stepName: 'FUNNEL_GUEST_DETAILS',
       },
@@ -63,7 +62,6 @@ export default {
         completed: false,
         label: 'Extras',
         link: '/booking/extras',
-        submitUrl: '/api/booking/extras',
         availableToGo: false,
         stepName: 'FUNNEL_EXTRAS',
       },
@@ -71,7 +69,6 @@ export default {
         completed: false,
         label: 'Payment',
         link: '/booking/payment',
-        submitUrl: '/api/booking/payment',
         availableToGo: false,
         stepName: 'FUNNEL_PAYMENT',
       },
@@ -98,6 +95,14 @@ export default {
                 ${getDay(end)} ${months[end.month()]} ${start.year()}`;
       }
       return `${getDay(start)} - ${getDay(end)} ${months[start.month()]} ${start.year()}`;
+    },
+    currentStep: (state) => (path) => {
+      const step = state.navigation.find((el) => el.link === path);
+      return step;
+    },
+    nextStep: (state) => (currentPath) => {
+      const currentStepIndex = state.navigation.findIndex((el) => el.link === currentPath);
+      return state.navigation[currentStepIndex + 1];
     },
   },
 

@@ -69,9 +69,18 @@ export default {
   methods: {
     mobileOpenSidebar() {},
     handleSubmitClick() {
-      switch (this.currentStep) {
-        case 'FUNNEL_ROOM_OPTIONS':
+      switch (this.$route.path) {
+        case '/booking/rooms':
           this.$router.push('/booking/flights');
+          break;
+        case '/booking/flights':
+          this.$router.push('/booking/guest-details');
+          break;
+        case '/booking/guest-details':
+          this.$router.push('/booking/extras');
+          break;
+        case '/booking/extras':
+          this.$router.push('/booking/payment');
           break;
         default:
           break;

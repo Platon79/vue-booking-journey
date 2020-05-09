@@ -179,6 +179,7 @@ export default {
     {
       index: 1,
       age: 30,
+      title: '',
       firstName: '',
       lastName: '',
       sex: '',
@@ -189,6 +190,7 @@ export default {
     {
       index: 2,
       age: 30,
+      title: '',
       firstName: '',
       lastName: '',
       sex: '',

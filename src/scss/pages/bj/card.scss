@@ -1,0 +1,128 @@
+.bj-card {
+  margin-bottom: 20px;
+  padding: 15px 12px;
+  border: 1px solid #F3F3F3;
+  box-shadow: 0 1px 7px 0 rgba(147,156,164,0.30);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.bj-card__head {
+  margin-bottom: 20px;
+  line-height: 22px;
+  font-size: 16px;
+
+  &._bordered {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+
+  p {
+    line-height: 21px;
+    font-size: 12px;
+    color: #A4ACB1;
+  }
+}
+
+.bj-card__head-left {
+
+}
+
+.bj-card__form-row {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.bj-card__form-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -7px;
+
+  &:last-child { 
+    margin-bottom: 0;
+  }
+}
+
+.bj-card__form-input {
+  margin-bottom: 18px;
+  padding: 0 7px;
+
+  &._col10 { width: 10%; }
+  &._col18 { width: 18%; }
+  &._col20 { width: 20%; }
+  &._col25 { width: 25%; }
+  &._col30 { width: 30%; }
+  &._col40 { width: 40%; }
+  &._col50 { width: 50%; }
+  &._col60 { width: 60%; }
+  &._col70 { width: 70%; }
+  &._col80 { width: 80%; }
+  &._col90 { width: 90%; }
+  &._col100 { width: 100%; }
+
+
+  &._error {
+    .input-jumped input,
+    .input-jumped textarea,
+    .jupmed-select {
+      border-color: #C43A37;
+    }
+
+    .jupmed-select:hover:after {
+      color: #C43A37;
+    }
+  }
+}
+.bj-card__form-label {
+  margin-bottom: 10px;
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+
+  p {
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #A4ACB1;
+  }
+}
+.bj-card__form-error {
+  margin-top: 5px;
+  color: #C43A37;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.bj-card__info-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  margin-bottom: -5px;
+  padding: 0 5px;
+  // background: url('#{$image-path}svg/info--grey.svg') no-repeat;
+  background-size: 18px;
+}
+
+@media(max-width: $max-width) {
+  .bj-card__form-input {
+    &._t-col24 { width: 24%; }
+    &._t-col28 { width: 28%; }
+  }
+}
+
+@media(max-width: $desktop-width) {
+  .bj-card__form-input {
+    &._m-col50 { width: 50%; }
+    &._m-col100 { width: 100%; }
+  }
+}
+
+@media(max-width: $mobile-width) {
+
+}

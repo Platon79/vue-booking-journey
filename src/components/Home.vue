@@ -8,7 +8,8 @@
     <div class="homepage-todo">
       <h4>Todo list:</h4>
       <ul>
-        <li>Finish base functionality</li>
+        <li>Rooms step: add ability to change rooms</li>
+        <li>Add animation slide down for sidebar items</li>
         <li>Create simple node.js server and move all data there</li>
       </ul>
     </div>

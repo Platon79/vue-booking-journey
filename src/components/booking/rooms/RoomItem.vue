@@ -1,8 +1,8 @@
 <template>
   <div class="bj-room__item">
-    <div class="bj-room__change-room">
+    <!-- <div class="bj-room__change-room">
       <button @click="showUpgradeRoomModal"><span class="icon" /> Change room</button>
-    </div>
+    </div> -->
 
     <div class="bj-room__item-head">
       <strong>Your chosen room {{ roomNumber }} –</strong>

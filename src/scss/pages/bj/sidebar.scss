@@ -67,16 +67,16 @@
   position: relative;
   padding-left: 30px;
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: left top;
   background-size: 20px;
   line-height: 20px;
   font-size: 14px;
   cursor: pointer;
 
-  // &._room {
-  //   background-size: 17px;
-  //   background-image: url('#{$image-path}icons/room-options.svg');
-  // }
+  &._room {
+    background-size: 17px;
+    background-image: url('../assets/icons/room-options.svg');
+  }
   // &._flights {
   //   background-image: url('#{$image-path}icons/flight-options.svg');
   // }
@@ -110,6 +110,10 @@
   display: none;
   padding-top: 15px;
   font-size: 14px;
+
+  &.active {
+    display: block;
+  }
 }
 
 .bj-sidebar__item {

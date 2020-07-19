@@ -14,11 +14,11 @@
       </div>
 
       <div class="bj-sidebar__collapse">
-        <div class="bj-sidebar__collapse-title _room">
+        <div class="bj-sidebar__collapse-title _room" @click="changeActiveMenu('rooms')">
           Rooms
           <span class="caret" />
         </div>
-        <div class="bj-sidebar__collapse-content">
+        <div class="bj-sidebar__collapse-content" :class="{active: activeMenu === 'rooms'}">
           <div class="bj-sidebar__item">
             <div class="bj-sidebar__label">Duration</div>
             <div class="bj-sidebar__room-value">
@@ -64,9 +64,17 @@ export default {
   data: () => ({
     submitLoader: false,
     nextStepName: 'Flights',
+    activeMenu: null,
   }),
 
   methods: {
+    changeActiveMenu(val) {
+      if (this.activeMenu !== val) {
+        this.activeMenu = val;
+      } else {
+        this.activeMenu = null;
+      }
+    },
     mobileOpenSidebar() {},
     handleSubmitClick() {
       switch (this.$route.path) {

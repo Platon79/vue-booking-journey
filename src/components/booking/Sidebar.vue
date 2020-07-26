@@ -40,34 +40,47 @@
         @click="handleSubmitClick"
       >
         <!-- <OverlayScaleLoader v-if="submitLoader" class="loader" white />
-        <template v-else>Continue to {{ nextStepName }}</template> -->
-        Continue to {{ nextStepName }}
+        <template v-else>Continue to {{ nextStepLabel }}</template> -->
+        Continue to {{ nextStepLabel }}
       </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
+import {
+  NAV_ROOMS_STEP,
+  NAV_FLIGHTS_STEP,
+  NAV_GUEST_DETAILS_STEP,
+  NAV_EXTRAS_STEP,
+} from '@/constants';
 
 export default {
-  computed: {
-    ...mapState('bookingJourney', [
-      'holidaysDetails',
-      'currentStep',
-    ]),
-    ...mapGetters('bookingJourney', [
-      'getFormatedDurationString',
-    ]),
-  },
-
   data: () => ({
     submitLoader: false,
-    nextStepName: 'Flights',
     activeMenu: null,
   }),
 
+  computed: {
+    ...mapState('bookingJourney', [
+      'holidaysDetails',
+      'currentStepName',
+      'navigation',
+    ]),
+    ...mapGetters('bookingJourney', [
+      'getFormatedDurationString',
+      'nextStep',
+    ]),
+    nextStepLabel() {
+      return this.nextStep.label;
+    },
+  },
+
   methods: {
+    ...mapActions('bookingJourney/rooms', {
+      saveRoomsData: 'saveData',
+    }),
     changeActiveMenu(val) {
       if (this.activeMenu !== val) {
         this.activeMenu = val;
@@ -77,17 +90,18 @@ export default {
     },
     mobileOpenSidebar() {},
     handleSubmitClick() {
-      switch (this.$route.path) {
-        case '/booking/rooms':
+      switch (this.currentStepName) {
+        case NAV_ROOMS_STEP:
+          this.saveRoomsData();
           this.$router.push('/booking/flights');
           break;
-        case '/booking/flights':
+        case NAV_FLIGHTS_STEP:
           this.$router.push('/booking/guest-details');
           break;
-        case '/booking/guest-details':
+        case NAV_GUEST_DETAILS_STEP:
           this.$router.push('/booking/extras');
           break;
-        case '/booking/extras':
+        case NAV_EXTRAS_STEP:
           this.$router.push('/booking/payment');
           break;
         default:

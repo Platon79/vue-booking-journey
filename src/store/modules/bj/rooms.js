@@ -1,3 +1,5 @@
+import { NAV_ROOMS_STEP } from '../../../constants';
+
 export default {
   namespaced: true,
 
@@ -44,8 +46,14 @@ export default {
       commit('setDraftRooms', payload);
     },
 
-    // Action to save passed data on server
-    // Will be done in future
-    saveData: () => {},
+
+    saveData: ({ commit, rootState }) => {
+      const nav = rootState.bookingJourney.navigation.map((el) => ({
+        ...el,
+        completed: el.stepName === NAV_ROOMS_STEP ? true : el.completed,
+      }));
+      commit('bookingJourney/updateNavigation', nav, { root: true });
+      // send data to the server
+    },
   },
 };

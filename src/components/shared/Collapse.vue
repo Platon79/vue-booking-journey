@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import utils from '@/utils/index';
+import { moneyConventer } from '@/utils/index';
 
 export default {
   props: {
@@ -39,7 +39,7 @@ export default {
 
   computed: {
     formattedPrice() {
-      return utils.moneyConventer(+this.price);
+      return moneyConventer(+this.price);
     },
   },
 

@@ -10,6 +10,7 @@
       <ul>
         <li>Rooms step: add ability to change rooms</li>
         <li>Add animation slide down for sidebar items</li>
+        <li>Add progress saving after page reloading</li>
         <li>Create simple node.js server and move all data there</li>
       </ul>
     </div>

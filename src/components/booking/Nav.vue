@@ -6,8 +6,8 @@
           :to="item.link"
           :class="{
             _filled: item.completed,
-            _current: isCurrent(item.link),
-            _next: isNext(item.link),
+            _current: isCurrent(item.stepName),
+            _next: isNext(item.stepName),
             _disabled: !item.availableToGo
           }"
         >
@@ -21,31 +21,25 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
-  data: () => ({
-    currentStep: null,
-    nextStep: null,
-  }),
-
   computed: {
     ...mapState('bookingJourney', [
       'navigation',
+      'currentStepName',
     ]),
-  },
-
-  mounted() {
-    this.currentStep = this.$store.getters['bookingJourney/currentStep'](this.$route.path).link;
-    this.nextStep = this.$store.getters['bookingJourney/nextStep'](this.$route.path).link;
+    ...mapGetters('bookingJourney', [
+      'nextStepName',
+    ]),
   },
 
   methods: {
     isCurrent(stepName) {
-      return stepName === this.currentStep;
+      return stepName === this.currentStepName;
     },
     isNext(stepName) {
-      return stepName === this.nextStep;
+      return stepName === this.nextStepName;
     },
   },
 };

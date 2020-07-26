@@ -35,7 +35,7 @@ export default {
       'extrasArraySelected',
     ]),
     isFirstPageVisit() {
-      return !this.navigationObject.FUNNEL_EXTRAS.completed;
+      return !this.navigationObject.EXTRAS.completed;
     },
     selectedExtrasAmount() {
       return this.extrasArraySelected.length;

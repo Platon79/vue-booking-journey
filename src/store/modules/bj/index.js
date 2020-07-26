@@ -1,13 +1,16 @@
 import moment from 'moment';
+import {
+  NAV_ROOMS_STEP,
+  NAV_FLIGHTS_STEP,
+  NAV_GUEST_DETAILS_STEP,
+  NAV_EXTRAS_STEP,
+  NAV_PAYMENT_STEP,
+} from '@/constants';
 import rooms from './rooms';
 import flights from './flights';
 import guestDetails from './guestDetails';
 import extras from './extras';
 import payment from './payment';
-import router from '../../../router';
-
-window.test = router
-console.log(router)
 
 const months = {
   0: 'January',
@@ -42,37 +45,38 @@ export default {
         label: 'Rooms',
         link: '/booking/rooms',
         availableToGo: true,
-        stepName: 'FUNNEL_ROOM_OPTIONS',
+        stepName: NAV_ROOMS_STEP,
       },
       {
         completed: false,
         label: 'Flights',
         link: '/booking/flights',
         availableToGo: true,
-        stepName: 'FUNNEL_FLIGHT_OPTIONS',
+        stepName: NAV_FLIGHTS_STEP,
       },
       {
         completed: false,
         label: 'Guest details',
         link: '/booking/guest-details',
         availableToGo: true,
-        stepName: 'FUNNEL_GUEST_DETAILS',
+        stepName: NAV_GUEST_DETAILS_STEP,
       },
       {
         completed: false,
         label: 'Extras',
         link: '/booking/extras',
         availableToGo: false,
-        stepName: 'FUNNEL_EXTRAS',
+        stepName: NAV_EXTRAS_STEP,
       },
       {
         completed: false,
         label: 'Payment',
         link: '/booking/payment',
         availableToGo: false,
-        stepName: 'FUNNEL_PAYMENT',
+        stepName: NAV_PAYMENT_STEP,
       },
     ],
+    currentStepName: NAV_ROOMS_STEP,
     holidaysDetails: null,
   },
 
@@ -96,25 +100,45 @@ export default {
       }
       return `${getDay(start)} - ${getDay(end)} ${months[start.month()]} ${start.year()}`;
     },
-    currentStep: (state) => (path) => {
-      const step = state.navigation.find((el) => el.link === path);
-      return step;
+    navigationObject: (state) => {
+      const obj = {};
+      state.navigation.forEach((navItem) => {
+        obj[navItem.stepName] = navItem;
+      });
+      return obj;
     },
-    nextStep: (state) => (currentPath) => {
-      const currentStepIndex = state.navigation.findIndex((el) => el.link === currentPath);
-      return state.navigation[currentStepIndex + 1];
+    currentStep: (state, getters) => getters.navigationObject[state.currentStepName],
+    nextStepIndex: (state) => {
+      const currentStepIndex = state.navigation.findIndex((el) => el.stepName === state.currentStepName);
+      return currentStepIndex === state.navigation.length - 1
+        ? currentStepIndex
+        : currentStepIndex + 1;
     },
+    nextStep: (state, getters) => state.navigation[getters.nextStepIndex],
+    nextStepName: (state, getters) => getters.nextStep.stepName,
   },
 
   mutations: {
     updateHolidaysDetails: (state, payload) => {
       state.holidaysDetails = payload;
     },
+    updateNavCurrentStep: (state, payload) => {
+      state.currentStepName = payload;
+    },
+    updateNavigation: (state, payload) => {
+      state.navigation = payload;
+    },
   },
 
   actions: {
     updateHolidaysDetails: ({ commit }, payload) => {
       commit('updateHolidaysDetails', payload);
+    },
+    updateNavCurrentStep: ({ commit }, payload) => {
+      commit('updateNavCurrentStep', payload);
+    },
+    updateNavigation: ({ commit }, payload) => {
+      commit('updateNavigation', payload);
     },
   },
 };

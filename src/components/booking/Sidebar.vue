@@ -25,12 +25,40 @@
               {{ getFormatedDurationString }} <span>{{ holidaysDetails.duration }} nights</span>
             </div>
           </div>
-          <!-- <div v-for="room in getBookingRoomsDetails" :key="room.roomNumber" class="bj-sidebar__item">
-            <div class="bj-sidebar__label">Room {{ room.roomNumber }}</div>
+          <div v-for="(room, index) in draftRoomsDetails" :key="room.id" class="bj-sidebar__item">
+            <div class="bj-sidebar__label">Room {{ index + 1 }}</div>
             <div class="bj-sidebar__room-value">
-              {{ room.description }}
+              {{ room.name }}
             </div>
-          </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="bj-sidebar__collapse">
+        <div class="bj-sidebar__collapse-title _flights" @click="changeActiveMenu('flights')">
+          Flights
+          <span class="caret" />
+        </div>
+        <div class="bj-sidebar__collapse-content" :class="{active: activeMenu === 'flights'}">
+          <div v-if="currentFlight" class="bj-sidebar__item">
+            <div class="bj-sidebar__label">Outbound</div>
+            <div class="bj-sidebar__flight-row1">
+              {{ currentFlight.flights.depRoute.depDate }}
+            </div>
+            <div class="bj-sidebar__flight-row2">
+              <span>{{ currentFlight.flights.depRoute.depTime }} {{ currentFlight.flights.depRoute.depCode }}</span>
+              <span>{{ currentFlight.flights.depRoute.arrTime }} {{ currentFlight.flights.depRoute.arrCode }}</span>
+            </div>
+          </div>
+          <div v-if="currentFlight" class="bj-sidebar__item">
+            <div class="bj-sidebar__label">Inbound</div>
+            <div class="bj-sidebar__flight-row1">
+              {{ currentFlight.flights.retRoute.depDate }}
+            </div>
+            <div class="bj-sidebar__flight-row2">
+              <span>{{ currentFlight.flights.retRoute.depTime }} {{ currentFlight.flights.retRoute.depCode }}</span>
+              <span>{{ currentFlight.flights.retRoute.arrTime }} {{ currentFlight.flights.retRoute.arrCode }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -72,6 +100,12 @@ export default {
       'getFormatedDurationString',
       'nextStep',
     ]),
+    ...mapGetters('bookingJourney/rooms', [
+      'draftRoomsDetails',
+    ]),
+    ...mapGetters('bookingJourney/flights', [
+      'currentFlight',
+    ]),
     nextStepLabel() {
       return this.nextStep.label;
     },
@@ -80,6 +114,9 @@ export default {
   methods: {
     ...mapActions('bookingJourney/rooms', {
       saveRoomsData: 'saveData',
+    }),
+    ...mapActions('bookingJourney/flights', {
+      saveFlightsData: 'saveData',
     }),
     changeActiveMenu(val) {
       if (this.activeMenu !== val) {
@@ -96,6 +133,7 @@ export default {
           this.$router.push('/booking/flights');
           break;
         case NAV_FLIGHTS_STEP:
+          this.saveFlightsData();
           this.$router.push('/booking/guest-details');
           break;
         case NAV_GUEST_DETAILS_STEP:

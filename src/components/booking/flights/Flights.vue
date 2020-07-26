@@ -12,13 +12,12 @@
     <Collapse v-if="availableFlight.length" name="Alternative flights" class="opened">
       <FlightCard
         v-for="flight in availableFlight"
-        :key="flight.flights.depRoute.flightNo"
-        :code="flight.flights.depRoute.flightNo"
+        :key="flight.code"
+        :code="flight.code"
         :outbound="flight.flights.depRoute"
         :inbound="flight.flights.retRoute"
         :selected="false"
         :over-payment="flight.price - currentFlight.price"
-        :loader="flightIsUpdating"
         @flightSelectClick="selectNewFlight"
       />
     </Collapse>
@@ -26,7 +25,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Collapse from '@/components/shared/Collapse.vue';
 import FlightCard from '@/components/shared/FlightCard/FlightCard.vue';
 
@@ -37,9 +36,6 @@ export default {
   },
 
   computed: {
-    ...mapState('bookingJourney/flights', [
-      'flightIsUpdating',
-    ]),
     ...mapGetters('bookingJourney/flights', [
       'currentFlight',
       'availableFlight',
@@ -47,7 +43,9 @@ export default {
   },
 
   methods: {
-    selectNewFlight() {},
+    ...mapActions('bookingJourney/flights', [
+      'selectNewFlight',
+    ]),
   },
 };
 </script>

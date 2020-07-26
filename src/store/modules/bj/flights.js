@@ -1,9 +1,10 @@
+import { NAV_FLIGHTS_STEP } from '../../../constants';
+
 export default {
   namespaced: true,
 
   state: {
     allFlights: [],
-    flightIsUpdating: null,
   },
 
   getters: {
@@ -15,14 +16,11 @@ export default {
     updateAllFlights: (state, payload) => {
       state.allFlights = payload;
     },
-    updateCurrentFlight: (state, flightNo) => {
+    updateCurrentFlight: (state, code) => {
       state.allFlights = state.allFlights.map((el) => ({
         ...el,
-        chosenFlight: el.flights.depRoute.flightNo === flightNo,
+        chosenFlight: el.code === code,
       }));
-    },
-    changeFlightLoader: (state, payload) => {
-      state.flightIsUpdating = payload;
     },
   },
 
@@ -30,14 +28,16 @@ export default {
     updateAllFlights: ({ commit }, payload) => {
       commit('updateAllFlights', payload);
     },
-    selectNewFlight: ({ state, commit }, payload) => {
-      if (state.flightIsUpdating) return;
-      commit('changeFlightLoader', payload);
-      commit('updateCurrentFlight', payload);
-      commit('changeFlightLoader', null);
+    selectNewFlight: ({ commit }, code) => {
+      commit('updateCurrentFlight', code);
     },
-    // Action to save passed data on server
-    // Will be done in future
-    saveData: () => {},
+    saveData: ({ commit, rootState }) => {
+      const nav = rootState.bookingJourney.navigation.map((el) => ({
+        ...el,
+        completed: el.stepName === NAV_FLIGHTS_STEP ? true : el.completed,
+      }));
+      commit('bookingJourney/updateNavigation', nav, { root: true });
+      // send data to the server
+    },
   },
 };

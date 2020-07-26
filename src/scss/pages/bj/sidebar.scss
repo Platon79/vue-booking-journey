@@ -77,23 +77,23 @@
     background-size: 17px;
     background-image: url('../assets/icons/room-options.svg');
   }
-  // &._flights {
-  //   background-image: url('#{$image-path}icons/flight-options.svg');
-  // }
-  // &._guest {
-  //   background-image: url('#{$image-path}icons/guest-details.svg');
-  // }
-  // &._extras {
-  //   background-size: 19px;
-  //   background-image: url('#{$image-path}svg/beachclub.svg');
+  &._flights {
+    background-image: url('../assets/icons/flight-options.svg');
+  }
+  &._guest {
+    background-image: url('../assets/icons/guest-details.svg');
+  }
+  &._extras {
+    background-size: 19px;
+    background-image: url('../assets/icons/extras.svg');
 
-  //   &._winter {
-  //     background-image: url('#{$image-path}svg/ski-white.svg');
-  //   }
-  //   &._sailing {
-  //     background-image: url('#{$image-path}svg/sailing.svg');
-  //   }
-  // }
+    // &._winter {
+    //   background-image: url('#{$image-path}svg/ski-white.svg');
+    // }
+    // &._sailing {
+    //   background-image: url('#{$image-path}svg/sailing.svg');
+    // }
+  }
   
   .caret:before {
     left: 0;
@@ -158,10 +158,9 @@
     display: inline-block;
 
     &:after {
-      content: 'a';
+      content: '\2192';
       display: inline-block;
       margin: 0 10px;
-      font-family: Neilsonicons;
       font-size: 12px;
     }
   }

@@ -62,8 +62,6 @@ export default {
       type: Object,
       default: () => boundStructure,
     },
-    // Uniq code for selecting
-    // @see: handleSelectClick()
     code: {
       type: String,
       default: '',
@@ -100,8 +98,8 @@ export default {
 
   methods: {
     handleSelectClick() {
-      debugger
       if (this.selected) return;
+      debugger
       this.$emit('flightSelectClick', this.code);
     },
   },

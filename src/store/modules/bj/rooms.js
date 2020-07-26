@@ -41,12 +41,9 @@ export default {
       commit('setDraftRooms', initialRooms);
       commit('setUpgradeRooms', upgradeRooms);
     },
-
     setDraftRooms: ({ commit }, payload) => {
       commit('setDraftRooms', payload);
     },
-
-
     saveData: ({ commit, rootState }) => {
       const nav = rootState.bookingJourney.navigation.map((el) => ({
         ...el,

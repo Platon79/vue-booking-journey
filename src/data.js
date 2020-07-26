@@ -86,7 +86,7 @@ export default {
   },
   availableFlights: [
     {
-      accomCode: 'FAG038',
+      code: 'FAG038',
       date: '2020-02-22',
       duration: 7,
       price: 1500,
@@ -123,7 +123,7 @@ export default {
       },
     },
     {
-      accomCode: 'FAG039',
+      code: 'FAG039',
       date: '2020-02-22',
       duration: 7,
       price: 1600,
@@ -160,9 +160,6 @@ export default {
       },
     },
   ],
-  currentStep: '',
-  nextStep: '',
-  previousStep: '',
   holiday: {
     totalPrice: 2000,
     depositAmount: 0,

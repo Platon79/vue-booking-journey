@@ -81,9 +81,19 @@ const router = new VueRouter({
   routes,
 });
 
+const getUpdatedNav = (stepName) => store.state.bookingJourney.navigation.map((el) => ({
+  ...el,
+  completed: el.stepName === stepName ? true : el.completed,
+}));
+
 router.beforeEach((to, from, next) => {
   if (to.meta.stepName) {
     store.dispatch('bookingJourney/updateNavCurrentStep', to.meta.stepName);
+    if (from.meta.stepName === NAV_ROOMS_STEP) {
+      store.dispatch('bookingJourney/updateNavigation', getUpdatedNav(NAV_ROOMS_STEP));
+    } else if (from.meta.stepName === NAV_FLIGHTS_STEP) {
+      store.dispatch('bookingJourney/updateNavigation', getUpdatedNav(NAV_FLIGHTS_STEP));
+    }
   }
   next();
 });

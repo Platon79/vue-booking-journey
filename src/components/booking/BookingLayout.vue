@@ -29,7 +29,7 @@ export default {
     this.updateHolidaysDetails(holiday);
     this.updateAllRoomsData(rooms);
     this.updateAllFlights(availableFlights);
-    this.updatePassengers(passengers);
+    this.initPsssengers(passengers);
   },
 
   methods: {
@@ -43,7 +43,7 @@ export default {
       updateAllFlights: 'updateAllFlights',
     }),
     ...mapActions('bookingJourney/guestDetails', {
-      updatePassengers: 'updatePassengers',
+      initPsssengers: 'initPsssengers',
     }),
   },
 };

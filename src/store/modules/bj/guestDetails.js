@@ -61,6 +61,33 @@ export default {
   },
 
   actions: {
+    initPsssengers: ({ dispatch }, payload) => {
+      let adultIndex = 0;
+      let childIndex = 0;
+      let infantIndex = 0;
+      const passengers = payload.map((person) => {
+        if (person.isAdult) {
+          adultIndex += 1;
+          return {
+            ...person,
+            ageBasedIndex: adultIndex,
+          };
+        }
+        if (person.isInfant) {
+          infantIndex += 1;
+          return {
+            ...person,
+            ageBasedIndex: infantIndex,
+          };
+        }
+        childIndex += 1;
+        return {
+          ...person,
+          ageBasedIndex: childIndex,
+        };
+      });
+      dispatch('updatePassengers', passengers);
+    },
     updatePassengers: ({ commit }, payload) => {
       commit('updatePassengers', payload);
     },

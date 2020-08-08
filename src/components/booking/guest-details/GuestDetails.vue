@@ -132,10 +132,7 @@ export default {
       return person.isInfant ? 'Infant' : 'Child';
     },
     scrollToFirstError: debounce(() => {
-      // const $firstInvalidEl = $('.bj-card__form-input._error').first();
-      // $('html, body').animate({
-      //   scrollTop: $firstInvalidEl.offset().top - $('.site-header__bj').height() - 50,
-      // }, 500);
+      // @todo: add scroll to ferst error
     }, 100),
   },
 };

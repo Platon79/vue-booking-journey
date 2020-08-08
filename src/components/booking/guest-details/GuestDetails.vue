@@ -11,10 +11,10 @@
     <PersonCard v-for="person in passengers" :key="person.index">
       <template slot="headerLeft">
         <strong>
-          {{ getPersonAgeName(person) }}
+          {{ getPersonAgeLabel(person) }}
           {{ person.ageBasedIndex }}
         </strong>
-        <template v-if="person.leadPassenger">
+        <template v-if="person.isLeadPassenger">
           – Lead passenger
           <span class="bj__guests-question">
             <div class="bj__guests-question-popup">
@@ -28,18 +28,11 @@
 
       <template slot="default">
         <PersonForm
-          v-if="person.leadPassenger"
-          ref="leadPassenger"
           :value="person"
           @changePassenger="updatePassengerField"
           @validationFired="scrollToFirstError"
         />
-        <PersonForm
-          v-else
-          :value="person"
-          @changePassenger="updatePassengerField"
-          @validationFired="scrollToFirstError"
-        />
+        <LeadPassengerFields v-if="person.isLeadPassenger" />
       </template>
     </PersonCard>
 
@@ -53,8 +46,8 @@
         <div class="bj__guests-checkboxes">
           <Checkbox
             v-for="item in specialRequestsOptions"
-            :key="item.code"
-            :value="item.code"
+            :key="item.id"
+            :value="item.id"
             :label="item.name"
             v-model="mutableSpecialRequests"
           />
@@ -63,7 +56,7 @@
         <div ref="collapseBlock" class="bj__guests-other">
           <div class="bj__guests-other-trigger" @click="toggleCollapse">More <span class="caret" /></div>
 
-          <div ref="collapseBody" class="bj__guests-other-body" >
+          <div :class="{opened: otherOpened}" class="bj__guests-other-body">
             <JumpedTextarea v-model="mutableSpecialRequestText" :max-symbols="150" label="Other" />
           </div>
         </div>
@@ -74,13 +67,12 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import xor from 'lodash/xor';
-import isEqual from 'lodash/isEqual';
 import debounce from 'lodash/debounce';
 import Checkbox from '@/components/shared/Checkbox.vue';
 import JumpedTextarea from '@/components/shared/Textarea.vue';
 import PersonCard from './PersonCard.vue';
 import PersonForm from './PersonFrom.vue';
+import LeadPassengerFields from './LeadPassengerFields.vue';
 
 export default {
   components: {
@@ -88,28 +80,19 @@ export default {
     PersonForm,
     Checkbox,
     JumpedTextarea,
+    LeadPassengerFields,
   },
 
   data: () => ({
-
+    otherOpened: false,
   }),
 
   computed: {
-    ...mapState('bookingJourney', [
-      'savingComplete',
-    ]),
     ...mapState('bookingJourney/guestDetails', [
       'passengers',
       'specialRequests',
       'specialRequestText',
-      'marketingPreferences',
-
       'specialRequestsOptions',
-
-      'initialPassengers',
-      'initialSpecialRequests',
-      'initialSpecialRequestText',
-      'initialMarketingPreferences',
     ]),
     mutableSpecialRequests: {
       get() {
@@ -120,9 +103,6 @@ export default {
           payload: val,
         });
       },
-    },
-    adultCount() {
-      return this.passengers.filter((item) => item.isAdult).length;
     },
     mutableSpecialRequestText: {
       get() {
@@ -141,48 +121,15 @@ export default {
       'updatePassengerField',
       'updateSpecialRequests',
       'updateSpecialRequestText',
-      'fillPassengers',
     ]),
     toggleCollapse() {
-      // const { collapseBody, collapseBlock } = this.$refs;
-
-      // if ($(collapseBlock).hasClass('_opened')) {
-      //   $(collapseBody).slideUp();
-      // } else {
-      //   $(collapseBody).slideDown(400, () => {
-      //     $('html, body').animate({
-      //       scrollTop: 9999,
-      //     }, 2000);
-      //   });
-      // }
-      // $(collapseBlock).toggleClass('_opened');
+      this.otherOpened = !this.otherOpened;
     },
-    getPersonAgeName(person) {
+    getPersonAgeLabel(person) {
       if (person.isAdult) {
         return 'Adult';
       }
       return person.isInfant ? 'Infant' : 'Child';
-    },
-    isDataChanged() {
-      if (this.initialSpecialRequestText !== this.specialRequestText) return true;
-      if (xor(this.initialSpecialRequests, this.specialRequests).length) return true;
-      if (xor(this.initialMarketingPreferences, this.marketingPreferences).length) return true;
-      if (!this.comparePassengers()) return true;
-      return false;
-    },
-    comparePassengers() {
-      let result = true;
-      this.initialPassengers.forEach((el, index) => {
-        // Getting rid of help data to compare only valueble data
-        const { $invalid, $validationTrigger, ...realInitPassenger } = el;
-        const {
-          $invalid: newInvalid,
-          $validationTrigger: newTrigger,
-          ...realCurrentPassenger
-        } = this.passengers[index];
-        if (!isEqual(realInitPassenger, realCurrentPassenger)) result = false;
-      });
-      return result;
     },
     scrollToFirstError: debounce(() => {
       // const $firstInvalidEl = $('.bj-card__form-input._error').first();

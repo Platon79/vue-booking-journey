@@ -27,9 +27,9 @@ export default {
   created() {
     const { holiday, rooms, availableFlights, passengers } = accomodationData;
     this.updateHolidaysDetails(holiday);
-    this.setAllRoomsData(rooms);
+    this.updateAllRoomsData(rooms);
     this.updateAllFlights(availableFlights);
-    this.initPassengers(passengers);
+    this.updatePassengers(passengers);
   },
 
   methods: {
@@ -37,13 +37,13 @@ export default {
       'updateHolidaysDetails',
     ]),
     ...mapActions('bookingJourney/rooms', {
-      setAllRoomsData: 'setAllData',
+      updateAllRoomsData: 'setAllData',
     }),
     ...mapActions('bookingJourney/flights', {
       updateAllFlights: 'updateAllFlights',
     }),
     ...mapActions('bookingJourney/guestDetails', {
-      initPassengers: 'initPassengers',
+      updatePassengers: 'updatePassengers',
     }),
   },
 };

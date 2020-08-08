@@ -137,7 +137,7 @@ export default {
   },
 
   data: () => ({
-    addressMode: 'auto', // auto or manual
+    addressMode: 'manual', // auto or manual
     fullAddress: '',
   }),
 
@@ -163,7 +163,9 @@ export default {
       });
     },
     toggleAddressMode() {
-      this.addressMode = this.addressMode === 'auto' ? 'manual' : 'auto';
+      // Turn off because need to find analog of address library
+      console.log('Feature is in developing');
+      // this.addressMode = this.addressMode === 'auto' ? 'manual' : 'auto';
     },
   },
 };

@@ -8,7 +8,7 @@
             _filled: item.completed,
             _current: isCurrent(item.stepName),
             _next: isNext(item.stepName),
-            _disabled: !item.availableToGo
+            _disabled: !availableToGo(item.stepName)
           }"
         >
           <i v-if="item.completed" class="icon-tick-circled" />
@@ -31,6 +31,7 @@ export default {
     ]),
     ...mapGetters('bookingJourney', [
       'nextStepName',
+      'prevSteps',
     ]),
   },
 
@@ -40,6 +41,16 @@ export default {
     },
     isNext(stepName) {
       return stepName === this.nextStepName;
+    },
+    availableToGo(stepName) {
+      const prevSteps = this.prevSteps(stepName);
+      let available = true;
+      prevSteps.forEach((navItem) => {
+        if (!navItem.completed) {
+          available = false;
+        }
+      });
+      return available;
     },
   },
 };

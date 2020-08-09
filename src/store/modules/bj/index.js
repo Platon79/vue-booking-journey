@@ -41,38 +41,33 @@ export default {
   state: {
     navigation: [
       {
-        completed: true,
+        completed: false,
         label: 'Rooms',
         link: '/booking/rooms',
-        availableToGo: true,
         stepName: NAV_ROOMS_STEP,
       },
       {
         completed: false,
         label: 'Flights',
         link: '/booking/flights',
-        availableToGo: true,
         stepName: NAV_FLIGHTS_STEP,
       },
       {
         completed: false,
         label: 'Guest details',
         link: '/booking/guest-details',
-        availableToGo: true,
         stepName: NAV_GUEST_DETAILS_STEP,
       },
       {
         completed: false,
         label: 'Extras',
         link: '/booking/extras',
-        availableToGo: false,
         stepName: NAV_EXTRAS_STEP,
       },
       {
         completed: false,
         label: 'Payment',
         link: '/booking/payment',
-        availableToGo: false,
         stepName: NAV_PAYMENT_STEP,
       },
     ],
@@ -116,6 +111,10 @@ export default {
     },
     nextStep: (state, getters) => state.navigation[getters.nextStepIndex],
     nextStepName: (state, getters) => getters.nextStep.stepName,
+    prevSteps: (state) => (stepName) => {
+      const currentIndex = state.navigation.findIndex((navItem) => navItem.stepName === stepName);
+      return [...state.navigation].splice(0, currentIndex);
+    },
   },
 
   mutations: {

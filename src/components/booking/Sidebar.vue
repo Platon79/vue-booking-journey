@@ -67,8 +67,6 @@
         class="btn btn--default"
         @click="handleSubmitClick"
       >
-        <!-- <OverlayScaleLoader v-if="submitLoader" class="loader" white />
-        <template v-else>Continue to {{ nextStepLabel }}</template> -->
         Continue to {{ nextStepLabel }}
       </button>
     </div>

@@ -8,13 +8,13 @@
       :set="set"
       :need-level-filter="true"
       :opened="isSetOpened(set, index)"
-      @updateSingleExtra="updateSingleExtra"
+      @updateSingleExtra="updateSingleExtraCount"
     />
   </div>
 </template>
 
 <script>
-import { mapActions, mapState, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import ExtraSet from './Set.vue';
 
 export default {
@@ -23,19 +23,10 @@ export default {
   },
 
   computed: {
-    ...mapState('bookingJourney', {
-      isWinter: (state) => state.holidaysDetails.isWinter,
-    }),
-    ...mapGetters('bookingJourney', [
-      'navigationObject',
-    ]),
     ...mapGetters('bookingJourney/extras', [
       'extraSetsArrayOrdered',
       'extrasArraySelected',
     ]),
-    isFirstPageVisit() {
-      return !this.navigationObject.EXTRAS.completed;
-    },
     selectedExtrasAmount() {
       return this.extrasArraySelected.length;
     },
@@ -45,9 +36,6 @@ export default {
     ...mapActions('bookingJourney/extras', [
       'updateSingleExtraCount',
     ]),
-    updateSingleExtra(val) {
-      this.updateSingleExtraCount(val);
-    },
     setHasSelectedExtras(set) {
       let result = false;
       Object.values(set.extras).forEach((el) => {

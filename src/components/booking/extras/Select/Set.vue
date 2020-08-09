@@ -57,9 +57,6 @@ export default {
     ...mapState('bookingJourney/guestDetails', [
       'passengers',
     ]),
-    ...mapState('bookingJourney/extras', [
-      'skiLevelsOptions',
-    ]),
     extrasAmount() {
       let amount = 0;
       forIn(this.set.extras, (extra) => {

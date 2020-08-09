@@ -106,6 +106,9 @@ export default {
     ...mapGetters('bookingJourney/flights', [
       'currentFlight',
     ]),
+    ...mapGetters('bookingJourney/guestDetails', {
+      isGuestDataValid: 'isDataValid',
+    }),
     nextStepLabel() {
       return this.nextStep.label;
     },
@@ -117,6 +120,10 @@ export default {
     }),
     ...mapActions('bookingJourney/flights', {
       saveFlightsData: 'saveData',
+    }),
+    ...mapActions('bookingJourney/guestDetails', {
+      triggerGuestDetailsValidation: 'triggerValidation',
+      saveGuestDetailsData: 'saveData',
     }),
     changeActiveMenu(val) {
       if (this.activeMenu !== val) {
@@ -137,7 +144,12 @@ export default {
           this.$router.push('/booking/guest-details');
           break;
         case NAV_GUEST_DETAILS_STEP:
-          this.$router.push('/booking/extras');
+          if (this.isGuestDataValid) {
+            this.saveGuestDetailsData();
+            this.$router.push('/booking/extras');
+          } else {
+            this.triggerGuestDetailsValidation();
+          }
           break;
         case NAV_EXTRAS_STEP:
           this.$router.push('/booking/payment');

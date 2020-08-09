@@ -106,6 +106,21 @@ export default {
     },
   },
 
+  watch: {
+    'leadPassengerData.$validationTrigger': {
+      handler() {
+        this.$v.$touch();
+        this.$emit('validationFired');
+      },
+    },
+    '$v.$invalid': {
+      immediate: true,
+      handler(val) {
+        this.changeValue('$invalid', val);
+      },
+    },
+  },
+
   validations() {
     return {
       email: {
@@ -137,7 +152,7 @@ export default {
     changeValue(fieldName, value) {
       this.updateLeadPassengerData({
         ...this.leadPassengerData,
-        fieldName: value,
+        [fieldName]: value,
       });
     },
     updateAddressField({ fieldName, value }) {

@@ -28,6 +28,8 @@ export default {
       },
     ],
     leadPassengerData: {
+      $invalid: false,
+      $validationTrigger: false,
       contactNumber: '',
       email: '',
       addressCity: '',
@@ -39,12 +41,27 @@ export default {
     },
   },
 
+  getters: {
+    isDataValid: (state) => {
+      let invalid = false;
+      state.passengers.forEach((el) => {
+        if (el.$invalid) {
+          invalid = true;
+        }
+      });
+      if (state.leadPassengerData.$invalid) {
+        invalid = true;
+      }
+      return !invalid;
+    },
+  },
+
   mutations: {
     updatePassengers: (state, payload) => {
       state.passengers = payload;
     },
     updateLeadPassengerData: (state, payload) => {
-      state.leadPassenger = payload;
+      state.leadPassengerData = payload;
     },
     updateSpecialRequests: (state, payload) => {
       state.specialRequests = payload;
@@ -66,23 +83,28 @@ export default {
       let childIndex = 0;
       let infantIndex = 0;
       const passengers = payload.map((person) => {
-        if (person.isAdult) {
+        const newPerson = {
+          ...person,
+          $invalid: false,
+          $validationTrigger: false,
+        };
+        if (newPerson.isAdult) {
           adultIndex += 1;
           return {
-            ...person,
+            ...newPerson,
             ageBasedIndex: adultIndex,
           };
         }
-        if (person.isInfant) {
+        if (newPerson.isInfant) {
           infantIndex += 1;
           return {
-            ...person,
+            ...newPerson,
             ageBasedIndex: infantIndex,
           };
         }
         childIndex += 1;
         return {
-          ...person,
+          ...newPerson,
           ageBasedIndex: childIndex,
         };
       });
@@ -91,7 +113,7 @@ export default {
     updatePassengers: ({ commit }, payload) => {
       commit('updatePassengers', payload);
     },
-    updateLeadPassengerData: ({ commit }, { payload }) => {
+    updateLeadPassengerData: ({ commit }, payload) => {
       commit('updateLeadPassengerData', payload);
     },
     updatePassengerField: ({ state, commit }, { index, fieldName, value }) => {
@@ -113,8 +135,26 @@ export default {
     updateMarketingPreferences: ({ commit }, { payload }) => {
       commit('updateMarketingPreferences', payload);
     },
+    triggerValidation: ({ state, commit }) => {
+      const newPassengers = state.passengers.map((el) => {
+        if (el.$invalid) {
+          return {
+            ...el,
+            $validationTrigger: !el.$validationTrigger,
+          };
+        }
+        return { ...el };
+      });
+      commit('updatePassengers', newPassengers);
+      if (state.leadPassengerData.$invalid) {
+        commit('updateLeadPassengerData', {
+          ...state.leadPassengerData,
+          $validationTrigger: !state.leadPassengerData.$validationTrigger,
+        });
+      }
+    },
     saveData: () => {
-
+      // Send data to server
     },
   },
 };

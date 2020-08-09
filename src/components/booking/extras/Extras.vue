@@ -33,23 +33,15 @@ export default {
       'currentView',
     ]),
     ...mapGetters('bookingJourney/extras', [
-      'isExtrasChanged',
       'extrasArraySelected',
-      'flightExtrasArr',
     ]),
     disableAssign() {
-      return !this.extrasArraySelected.length && !this.flightExtrasArr.length;
+      return !this.extrasArraySelected.length;
     },
-  },
-
-  mounted() {
-    // const { skiLevels } = window.drupalSettings.neilson_booking_funnel;
-    // this.updateSkiLevelsOptions(skiLevels);
   },
 
   methods: {
     ...mapActions('bookingJourney/extras', [
-      'updateSkiLevelsOptions',
       'updateCurrentView',
     ]),
     openSelect() {

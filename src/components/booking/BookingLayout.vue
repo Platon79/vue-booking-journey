@@ -25,11 +25,12 @@ export default {
   },
 
   created() {
-    const { holiday, rooms, availableFlights, passengers } = accomodationData;
+    const { holiday, rooms, availableFlights, passengers, holidayExtras } = accomodationData;
     this.updateHolidaysDetails(holiday);
     this.updateAllRoomsData(rooms);
     this.updateAllFlights(availableFlights);
     this.initPsssengers(passengers);
+    this.updateExtraSets(holidayExtras);
   },
 
   methods: {
@@ -44,6 +45,9 @@ export default {
     }),
     ...mapActions('bookingJourney/guestDetails', {
       initPsssengers: 'initPsssengers',
+    }),
+    ...mapActions('bookingJourney/extras', {
+      updateExtraSets: 'updateExtraSets',
     }),
   },
 };

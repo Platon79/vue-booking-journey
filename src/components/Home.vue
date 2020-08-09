@@ -14,6 +14,8 @@
         <li>Create simple node.js server and move all data there</li>
         <li>Add scroll to guest details page on error</li>
         <li>Add search functional for address</li>
+        <li>Add saving data in local storage</li>
+        <li>Change logic of max extras</li>
       </ul>
     </div>
   </div>

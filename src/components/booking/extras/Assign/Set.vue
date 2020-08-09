@@ -29,17 +29,18 @@ export default {
 
   computed: {
     selectedExtrasAmount() {
-      const amount = Object.values(this.set.extras).reduce((acc, nextVal) => acc + nextVal.pricePerPerson, 0);
+      const amount = Object.values(this.set.extras)
+        .reduce((acc, nextVal) => acc + nextVal.pricePerPerson * nextVal.count, 0);
       return String(amount);
     },
   },
 
   methods: {
     ...mapActions('bookingJourney/extras', [
-      'updateSingleExtraSkiLevels',
+      'updateSingleExtraPassengers',
     ]),
     updatePassengers({ val, extra }) {
-      this.updateSingleExtraSkiLevels({
+      this.updateSingleExtraPassengers({
         val,
         extraIdentifier: extra.identifier,
         setId: this.set.id,

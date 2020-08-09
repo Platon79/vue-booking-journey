@@ -9,7 +9,6 @@
       :need-level-filter="true"
       :opened="isSetOpened(set, index)"
       @updateSingleExtra="updateSingleExtra"
-      @showLevelsPopup="showPopup"
     />
   </div>
 </template>

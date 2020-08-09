@@ -1,0 +1,42 @@
+.counter {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.counter__cell {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  vertical-align: top;
+  text-align: center;
+  line-height: 30px;
+  font-size: 24px;
+}
+
+.counter__btn {
+  border: 1px solid #69acb5;
+  background: #fff;
+  color: #69acb5;
+  cursor: pointer;
+
+  &:last-child { margin-right: 0; }
+
+  &.disabled {
+    opacity: .5;
+  }
+}
+
+.counter__value {
+  background: #f3f3f3;
+  color: #a5adb2;
+}
+
+.counter__limit {
+  display: inline-block;
+  height: 30px;
+  margin-left: 5px;
+  line-height: 32px;
+  font-size: 12px;
+  color: #A4ACB1;
+}

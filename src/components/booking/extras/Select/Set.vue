@@ -1,7 +1,7 @@
 <template>
   <Collapse :price="String(extrasAmount)" :name="set.name" :default-opened="opened">
     <div class="bj-flight__extras-wrap">
-      <div v-html="set.description" />
+      <p v-html="set.description" />
 
       <div class="bj-flight__extras-grid">
         <ExtraCard
@@ -26,8 +26,6 @@
 <script>
 import { mapState } from 'vuex';
 import forIn from 'lodash/forIn';
-import pickBy from 'lodash/pickBy';
-import union from 'lodash/union';
 import Collapse from '@/components/shared/Collapse.vue';
 import ExtraCard from '@/components/shared/ExtraCard.vue';
 
@@ -54,7 +52,7 @@ export default {
 
   computed: {
     ...mapState('bookingJourney', {
-      isWinter: state => state.holidaysDetails.isWinter,
+      isWinter: (state) => state.holidaysDetails.isWinter,
     }),
     ...mapState('bookingJourney/guestDetails', [
       'passengers',

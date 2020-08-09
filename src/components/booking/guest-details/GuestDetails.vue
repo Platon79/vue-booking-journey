@@ -1,5 +1,11 @@
 <template>
   <div class="bj__guests">
+    <button
+      style="position: fixed; top: 85px; left: 0; z-index: 1;"
+      @click="mockForm"
+    >
+      Mock form
+    </button>
     <h1 class="bj__h1">
       Guest details
 
@@ -73,6 +79,7 @@ import JumpedTextarea from '@/components/shared/Textarea.vue';
 import PersonCard from './PersonCard.vue';
 import PersonForm from './PersonFrom.vue';
 import LeadPassengerFields from './LeadPassengerFields.vue';
+import { mockedLeadPassengerData, mockedPassengers } from '@/mockedData.js';
 
 export default {
   components: {
@@ -118,7 +125,9 @@ export default {
 
   methods: {
     ...mapActions('bookingJourney/guestDetails', [
+      'updatePassengers',
       'updatePassengerField',
+      'updateLeadPassengerData',
       'updateSpecialRequests',
       'updateSpecialRequestText',
     ]),
@@ -134,6 +143,10 @@ export default {
     scrollToFirstError: debounce(() => {
       // @todo: add scroll to ferst error
     }, 100),
+    mockForm() {
+      this.updateLeadPassengerData(mockedLeadPassengerData);
+      this.updatePassengers(mockedPassengers);
+    },
   },
 };
 </script>

@@ -223,6 +223,7 @@ export default {
       firstName: '',
       lastName: '',
       birthDay: '',
+      age: 10,
       room: 2,
       isAdult: false,
       isInfant: false,

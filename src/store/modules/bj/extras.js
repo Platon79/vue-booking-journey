@@ -1,5 +1,6 @@
 import pickBy from 'lodash/pickBy';
 import cloneDeep from 'lodash/cloneDeep';
+import { NAV_EXTRAS_STEP } from '../../../constants';
 
 export default {
   namespaced: true,
@@ -78,6 +79,14 @@ export default {
       const newExtraSets = cloneDeep(state.extraSets);
       newExtraSets[setId].extras[extraIdentifier].passengers = val;
       commit('updateExtraSets', newExtraSets);
+    },
+    saveData: ({ commit, rootState }) => {
+      const nav = rootState.bookingJourney.navigation.map((el) => ({
+        ...el,
+        completed: el.stepName === NAV_EXTRAS_STEP ? true : el.completed,
+      }));
+      commit('bookingJourney/updateNavigation', nav, { root: true });
+      // send data to the server
     },
   },
 };

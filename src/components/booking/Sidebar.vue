@@ -107,6 +107,9 @@ export default {
     ...mapGetters('bookingJourney/guestDetails', {
       isGuestDataValid: 'isDataValid',
     }),
+    ...mapGetters('bookingJourney/extras', {
+      isSelectedExtrasAssigned: 'isSelectedExtrasAssigned',
+    }),
     nextStepLabel() {
       return this.nextStep.label;
     },
@@ -123,6 +126,9 @@ export default {
       triggerGuestDetailsValidation: 'triggerValidation',
       saveGuestDetailsData: 'saveData',
     }),
+    ...mapActions('bookingJourney/guestDetails', {
+      saveExtrasData: 'saveData',
+    }),
     changeActiveMenu(val) {
       if (this.activeMenu !== val) {
         this.activeMenu = val;
@@ -130,7 +136,16 @@ export default {
         this.activeMenu = null;
       }
     },
-    mobileOpenSidebar() {},
+    mobileOpenSidebar() {
+      const body = document.getElementsByTagName('body')[0];
+      const sidebarClassList = this.$el.classList;
+      if (sidebarClassList.value.indexOf('_m-opened') === -1) {
+        body.classList.add('modal-opened');
+      } else {
+        body.classList.remove('modal-opened');
+      }
+      sidebarClassList.toggle('_m-opened');
+    },
     handleSubmitClick() {
       switch (this.currentStepName) {
         case NAV_ROOMS_STEP:
@@ -150,7 +165,10 @@ export default {
           }
           break;
         case NAV_EXTRAS_STEP:
-          this.$router.push('/booking/payment');
+          if (this.isSelectedExtrasAssigned) {
+            this.saveExtrasData();
+            this.$router.push('/booking/payment');
+          }
           break;
         default:
           break;
